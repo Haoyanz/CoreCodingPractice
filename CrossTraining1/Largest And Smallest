@@ -1,0 +1,36 @@
+/*
+Use the least number of comparisons to get the largest and smallest number in the given integer array. Return the largest number and the smallest number.
+
+Assumptions : The given array is not null and has length of at least 1
+
+Examples
+  {2, 1, 5, 4, 3}, the largest number is 5 and smallest number is 1. return [5, 1].
+*/
+public class Solution {
+  public int[] largestAndSmallest(int[] array) {
+    /* 
+    compare each pair of elements
+    put smaller element in the first half of array
+    put larger element in the second half of array
+    */
+    for(int i = 0; i < array.length / 2; i++){
+      if(array[i] > array[array.length - 1 - i]){
+        swap(array, i, array.length - 1 - i);
+      }
+    }
+    int min = Integer.MAX_VALUE;
+    int max = Integer.MIN_VALUE;
+    for(int i = 0; i <= array.length / 2; i++){
+      min = Math.min(min, array[i]);
+      max = Math.max(max, array[array.length - 1 - i]);
+    }
+    return new int[]{max, min};
+  }
+  private void swap(int[] array, int l, int r){
+    int temp = array[l];
+    array[l] = array[r];
+    array[r] = temp;
+  }
+}
+//Time Complexity : O(n)
+//Space Complexity : O(1)
