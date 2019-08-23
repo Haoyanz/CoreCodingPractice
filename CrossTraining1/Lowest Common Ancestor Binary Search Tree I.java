@@ -37,16 +37,38 @@ The lowest common ancestor of 1 and 3 is 2
  *   }
  * }
  */
+/**
+ * public class TreeNode {
+ *   public int key;
+ *   public TreeNode left;
+ *   public TreeNode right;
+ *   public TreeNode(int key) {
+ *     this.key = key;
+ *   }
+ * }
+ */
+
 public class Solution {
   public TreeNode lca(TreeNode root, int p, int q) {
+    /*
+    base case : return root if root is null or found target
+
+    recursive rule : if both target value are less than current value, then find lca from left subtree
+                     if both target value are greater than current value, then find lca from right subtree
+                     if one value is smaller and the other one larger, then return current node
+    */
     if(root == null || root.key == p || root.key == q){
       return root;
     }
-    TreeNode left = lca(root.left, p, q);
-    TreeNode right = lca(root.right, p, q);
-    if(left != null && right != null){
-      return root;
+    if(root.key > p && root.key > q){
+      return lca(root.left, p, q);
     }
-    return left == null ? right : left;
+    if(root.key < p && root.key < q){
+      return lca(root.right, p, q);
+    }
+    return root;
   }
 }
+//Time Complexity : O(log n)
+//Space Complexity : O(height)
+
