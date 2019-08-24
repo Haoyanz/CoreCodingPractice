@@ -32,6 +32,8 @@ public class Solution {
     }
     return prev;
   }
+  //Time Complexity : O(n)
+  //Space Complexity : O(1)
   
   public ListNode reverseRecursive(ListNode head) {
     //corner case
@@ -47,4 +49,6 @@ public class Solution {
     head.next = null;
     return newHead;
   }
+  //Time Complexity : O(n)
+  //Space Complexity : O(n)
 }
